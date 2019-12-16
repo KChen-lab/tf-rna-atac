@@ -1,0 +1,29 @@
+---
+title: "Cluster correlation matrix"
+output: html_notebook
+---
+
+```{r}
+library(ComplexHeatmap)
+source("../R/clustering.R")
+```
+
+## Example 1:
+On a correlation matrix with 38 transcription factors. Each column is a TF found in scATAC-seq based on motifs, each row is the expression of a TF in scRNA-seq. The figure is not symmetric because they are different in levels, but rows and columns are ordered in the same way to emphasize the correspondence between them.
+
+The top-left part of the heatmap contains the most possitively correlated TFs. The bottom-right part conatins the most negatively correlated ones. Other clusters are in between.
+```{r fig.height=7, fig.width=8}
+mat <- readRDS("../data/cor38.RDS")
+ind <- find_all_clusters(mat, pos_th = -0.2, neg_th = 0.2, verbose = T)
+ComplexHeatmap::Heatmap(mat[ind, ind], cluster_rows = F, cluster_columns = F)
+
+```
+
+## Example 2:
+Another correlation matrix contains 80 TFs.
+
+```{r fig.height=12, fig.width=13}
+mat <- readRDS("../data/cor80.RDS")
+ind <- find_all_clusters(mat, pos_th = -0.25, neg_th = 0.25, verbose = T)
+ComplexHeatmap::Heatmap(mat[ind, ind], cluster_rows = F, cluster_columns = F)
+```
