@@ -5,4 +5,4 @@ Interaction of transcription factors and chromatin openness is the driver of cel
 
 Clustering is necessary for studying large ammount of TFs. We use a greedy algorithm to find clusters of TFs that share high correlation with each other.
 
-An example is shown in ...
+Two examples are shown [here](https://kchen-lab.github.io/tf-rna-atac/notebooks/clustering.nb.html)
